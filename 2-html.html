@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: lightblue;
+            border: 2px solid blue;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+    </div>
+
+    <script>
+        //JS实现用鼠标拖动盒子在界面中移动的功能
+        const box = document.querySelector('.box');
+        let isDragging = false;
+        let previousMouseX;
+        let previousMouseY;
+
+        box.addEventListener('mousedown', (event) => {
+            isDragging = true;
+            previousMouseX = event.clientX;
+            previousMouseY = event.clientY;
+        });
+
+        box.addEventListener('mousemove', (event) => {
+            if (isDragging) {
+                const deltaX = event.clientX - previousMouseX;
+                const deltaY = event.clientY - previousMouseY;
+                box.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+            }
+        });
+
+        box.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        box.addEventListener('mouseleave', () => {
+            isDragging = false;
+        });
+    </script>
+</body>
+
+</html>
